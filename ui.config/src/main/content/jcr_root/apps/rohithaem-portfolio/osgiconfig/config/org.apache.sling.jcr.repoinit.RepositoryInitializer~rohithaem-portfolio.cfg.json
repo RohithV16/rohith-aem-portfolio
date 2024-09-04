@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/rohithaem-portfolio",
+        "create path (nt:unstructured) /content/dam/rohithaem-portfolio/jcr:content",
+        "set properties on /content/dam/rohithaem-portfolio/jcr:content\n  set cq:conf{String} to /conf/rohithaem-portfolio\n  set jcr:title{String} to \"Rohith AEM Portfolio\"\nend"
+    ]
+}

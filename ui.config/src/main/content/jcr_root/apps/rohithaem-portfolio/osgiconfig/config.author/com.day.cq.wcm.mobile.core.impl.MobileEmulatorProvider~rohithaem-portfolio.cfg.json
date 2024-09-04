@@ -1,0 +1,6 @@
+{
+  "mobile.resourceTypes": [
+    "rohithaem-portfolio/components/page"
+  ],
+  "README": "Indicate which page resource types should display the mobile emulators."
+}

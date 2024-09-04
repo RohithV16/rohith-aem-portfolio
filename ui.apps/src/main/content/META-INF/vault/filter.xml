@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/rohithaem-portfolio/clientlibs"/>
+    <filter root="/apps/rohithaem-portfolio/components"/>
+    <filter root="/apps/rohithaem-portfolio/i18n"/>
+</workspaceFilter>
