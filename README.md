@@ -41,7 +41,13 @@ Or to deploy only the bundle to the author, run
 
 Or to deploy only a single content package, run in the sub-module directory (i.e `ui.apps`)
 
-    mvn clean install -PautoInstallPackage
+    mvn clean install -PautoInstallPackage -Dskip.installnodenpm -Dmaven.test.skip=true
+Or to deploy by skipping npm and test
+
+    mvn clean install -PautoInstallPackage -PautoInstallPackagePublish -Dskip.installnodenpm -Dmaven.test.skip=true
+
+mvn clean install -PautoInstallPackage
+
 
 ## Documentation
 
