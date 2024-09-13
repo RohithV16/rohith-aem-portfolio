@@ -8,5 +8,5 @@
     </filter>
     <filter root="/content/dam/rohithaem-portfolio/asset.jpg" mode="merge"/>
     <filter root="/content/experience-fragments/rohithaem-portfolio" mode="merge"/>
-    <filter root="/etc/map" mode="update"/>
+    <filter root="/etc/map"/>
 </workspaceFilter>
