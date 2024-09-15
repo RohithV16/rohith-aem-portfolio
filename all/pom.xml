@@ -77,6 +77,12 @@
                             <type>zip</type>
                             <target>/apps/rohithaem-portfolio-packages/application/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>io.wcm</groupId>
+                            <artifactId>io.wcm.caconfig.editor.package</artifactId>
+                            <type>zip</type>
+                            <target>/apps/rohithaem-portfolio-packages/application/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -196,6 +202,11 @@
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
-
+        <dependency>
+            <groupId>io.wcm</groupId>
+            <artifactId>io.wcm.caconfig.editor.package</artifactId>
+            <version>${cac.editor.version}</version>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 </project>
