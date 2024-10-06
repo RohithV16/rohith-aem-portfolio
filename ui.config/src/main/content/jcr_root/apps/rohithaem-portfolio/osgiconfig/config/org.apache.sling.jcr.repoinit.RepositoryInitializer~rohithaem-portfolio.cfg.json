@@ -1,7 +1,9 @@
 {
-    "scripts": [
+    "scripts":[
         "create path (sling:OrderedFolder) /content/dam/rohithaem-portfolio",
         "create path (nt:unstructured) /content/dam/rohithaem-portfolio/jcr:content",
-        "set properties on /content/dam/rohithaem-portfolio/jcr:content\n  set cq:conf{String} to /conf/rohithaem-portfolio\n  set jcr:title{String} to \"Rohith AEM Portfolio\"\nend"
+        "set properties on /content/dam/rohithaem-portfolio/jcr:content\r\n  set cq:conf{String} to /conf/rohithaem-portfolio\r\n  set jcr:title{String} to \"Rohith AEM Portfolio\"\r\nend",
+        "create service user service-user-test with forced path /home/users/system/cq:services",
+        "set principal ACL for service-user-test \r\n allow jcr:read on /content/dam \r\nend"
     ]
 }
