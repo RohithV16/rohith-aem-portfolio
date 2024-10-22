@@ -5,3 +5,6 @@
 #
 
 $include "./default_clientheaders.any"
+
+"x-aem-client-country"
+"x-aem-client-continent"
