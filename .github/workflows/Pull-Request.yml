@@ -1,7 +1,9 @@
-name: Maven Build Manual Trigger
+name: Maven Build and Test ON PR
 
 on:
-  workflow_dispatch:  # Enables manual trigger
+  pull_request:
+    branches:
+      - '**'  # Matches pull requests to any branch
 
 jobs:
   build:
