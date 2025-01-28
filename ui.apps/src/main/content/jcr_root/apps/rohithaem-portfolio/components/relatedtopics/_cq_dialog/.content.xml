@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Related Topics"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <relatedtopic
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Related Topic"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <rolluptype
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Rollup Type"
+                                                    name="./rollupType"
+                                                    vertical="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <rollupcards
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            name="./rollupcards"
+                                                            text="Rollup Cards"
+                                                            value="cards"/>
+                                                    <rolluplinks
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            name="./rollupLinks"
+                                                            text="Rollup Links"
+                                                            value="link"/>
+                                                    <rolluplinksdesc
+                                                            jcr:primaryType="nt:unstructured"
+                                                            name="./rolluplinksdesc"
+                                                            text="Rollup Links with Description"
+                                                            value="desc"/>
+                                                </items>
+                                            </rolluptype>
+                                            <manualItems
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                    composite="{Boolean}true"
+                                                    fieldLabel="Manual Pages">
+                                                <field
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                        name="./manualItems">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <manualpageurl
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                name="./manualpageurl"
+                                                                rootPath="/content"/>
+                                                    </items>
+                                                </field>
+                                            </manualItems>
+                                            <rollupColumnFlow
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Rollup Column Flow"
+                                                    name="./rollupColumnFlow"
+                                                    required="{Boolean}true"
+                                                    vertical="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <vertical
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            text="Vertical"
+                                                            value="Vertical"/>
+                                                    <Horizontal
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            selected="{Boolean}true"
+                                                            text="Horizontal"
+                                                            value="Horizontal"/>
+                                                </items>
+                                            </rollupColumnFlow>
+                                            <rollupColumnCount
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Rollup Column Count"
+                                                    name="./rollupColumnCount"
+                                                    required="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <one
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            text="1"
+                                                            value="1"/>
+                                                    <two
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            selected="{Boolean}true"
+                                                            text="2"
+                                                            value="2"/>
+                                                    <three
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            text="3"
+                                                            value="3"/>
+                                                    <four
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            text="4"
+                                                            value="4"/>
+                                                </items>
+                                            </rollupColumnCount>
+                                            <operator
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Operator"
+                                                    name="./operator"
+                                                    required="{Boolean}true"
+                                                    vertical="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <and
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            text="AND"
+                                                            value="and"/>
+                                                    <or
+                                                            jcr:primaryType="nt:unstructured"
+                                                            checked="{Boolean}true"
+                                                            selected="{Boolean}true"
+                                                            text="OR"
+                                                            value="or"/>
+                                                </items>
+                                            </operator>
+                                            <numberOfResults
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                    fieldLabel="Number Of Results"
+                                                    max="{Long}9"
+                                                    min="{Long}0"
+                                                    name="./numberOfResults"
+                                                    value="6"/>
+                                            <orderByTitle
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    checked="{Boolean}false"
+                                                    fieldLabel="Order By Title"
+                                                    name="./orderByTitle"
+                                                    text="Order By Title"
+                                                    value="{Boolean}true"/>
+                                            <topics
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                    autocreateTag="{Boolean}true"
+                                                    fieldLabel="Topics"
+                                                    multiple="{Boolean}true"
+                                                    name="./topics"
+                                                    rootPath="/content/cq:tags/aklc/term-set/topic"/>
+                                            <location
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                    autocreateTag="{Boolean}true"
+                                                    fieldLabel="Location"
+                                                    multiple="{Boolean}true"
+                                                    name="./location"
+                                                    rootPath="/content/cq:tags/aklc/term-set/location"/>
+                                            <body
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                    autocreateTag="{Boolean}true"
+                                                    fieldLabel="Body"
+                                                    multiple="{Boolean}true"
+                                                    name="./body"
+                                                    rootPath="/content/cq:tags/aklc/term-set/body"/>
+                                            <audience
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                    autocreateTag="{Boolean}true"
+                                                    fieldLabel="Audience"
+                                                    multiple="{Boolean}true"
+                                                    name="./audience"
+                                                    rootPath="/content/cq:tags/aklc/term-set/audience"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </relatedtopic>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
