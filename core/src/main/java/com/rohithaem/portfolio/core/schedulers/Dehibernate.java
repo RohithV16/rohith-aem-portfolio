@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 public class Dehibernate implements Runnable, TopologyEventListener {
     private final Logger log = LoggerFactory.getLogger(Dehibernate.class);
 
+    @Reference
+    private ResourceResolverService resourceResolverService;
     private boolean isLeader = false;
 
     @Override
@@ -32,11 +34,9 @@ public class Dehibernate implements Runnable, TopologyEventListener {
         }
 
         // Scheduled service logic, only run on the Master
-        try {
-            log.error("It is running on author {}" , System.currentTimeMillis());
-
-        } finally {
-
+        try (ResourceResolver resourceResolver = resourceResolverService.getResourceResolver()) {
+            log.error("Resolver {}", resourceResolver.isLive());
+            log.error("It is running on author {}", System.currentTimeMillis());
         }
     }
 
