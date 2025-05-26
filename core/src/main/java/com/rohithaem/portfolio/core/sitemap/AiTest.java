@@ -1,7 +1,12 @@
-package com.rohithaem.portfolio.core.schedulers;
+package com.rohithaem.portfolio.core.sitemap;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.sling.commons.scheduler.ScheduleOptions;
 import org.apache.sling.commons.scheduler.Scheduler;
+import org.apache.sling.event.jobs.JobManager;
+import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -21,6 +26,9 @@ public class AiTest implements Runnable {
 
     @Reference
     private Scheduler scheduler;
+
+    @Reference
+    private JobManager jobManager;
 
     @ObjectClassDefinition(name = "AI Test Scheduler Configuration", 
                          description = "Scheduler configuration for AI Test")
@@ -51,7 +59,7 @@ public class AiTest implements Runnable {
 
     private void addScheduler(Config config) {
         if (config.enabled()) {
-            ScheduleOptions scheduleOptions = scheduler.EXPR("0/10 * * * * ?");
+            ScheduleOptions scheduleOptions = scheduler.EXPR("0 * * * *");
             scheduleOptions.name(String.valueOf(schedulerId));
             scheduleOptions.canRunConcurrently(false);
             
@@ -76,6 +84,10 @@ public class AiTest implements Runnable {
     public void run() {
         try {
             LOGGER.error("AI Test Scheduler running at: {}", System.currentTimeMillis());
+            Map<String, Object> jobProperties = new HashMap<>();
+            jobProperties.put("test","trigerred from the scheduler");
+            
+            jobManager.addJob("com/example/sitemap/generate", jobProperties);
         } catch (Exception e) {
             LOGGER.error("Error in AI Test Scheduler: {}", e.getMessage(), e);
         }
