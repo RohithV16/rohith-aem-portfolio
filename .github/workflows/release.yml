@@ -1,4 +1,4 @@
-name: Maven Build
+name: Release Test
 
 on:
   workflow_dispatch:  
