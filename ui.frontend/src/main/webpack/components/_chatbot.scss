@@ -1,0 +1,199 @@
+.cmp-chatbot {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    font-family: inherit;
+
+    &__container {
+        width: 380px;
+        height: 500px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #efefef;
+    }
+
+    &__header {
+        background: #1a237e;
+        color: #fff;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    &__close-btn {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__messages {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        background: #f8f9fa;
+    }
+
+    &__message {
+        display: flex;
+        max-width: 85%;
+
+        &-content {
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            word-break: break-word;
+            min-height: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        // Dedicated span for the streamed answer text
+        &__answer-text {
+            white-space: pre-wrap;
+            word-break: break-word;
+            display: block;
+        }
+
+        &--bot {
+            align-self: flex-start;
+
+            .cmp-chatbot__message-content {
+                background: #fff;
+                color: #333;
+                border: 1px solid #e9ecef;
+                border-bottom-left-radius: 2px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        &--user {
+            align-self: flex-end;
+
+            .cmp-chatbot__message-content {
+                background: #1a237e;
+                color: #fff;
+                border-bottom-right-radius: 2px;
+            }
+        }
+
+        &--thinking {
+            font-style: italic;
+            color: #6c757d;
+        }
+    }
+
+    &__sources {
+        margin-top: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        background: #f1f3f9;
+        border-radius: 8px;
+        font-size: 0.85rem;
+
+        &-title {
+            margin: 0 0 0.25rem 0;
+            font-weight: 600;
+            color: #555;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 1.25rem;
+
+            li {
+                margin-bottom: 0.25rem;
+
+                a {
+                    color: #1a237e;
+                    text-decoration: none;
+                    word-break: break-all;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    &__input-area {
+        padding: 1rem;
+        background: #fff;
+        border-top: 1px solid #efefef;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    &__input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 24px;
+        outline: none;
+        font-size: 0.95rem;
+        transition: border-color 0.2s;
+
+        &:focus {
+            border-color: #1a237e;
+        }
+    }
+
+    &__send-btn {
+        background: #1a237e;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+
+        &:hover {
+            background: #283593;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        &:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+    }
+}

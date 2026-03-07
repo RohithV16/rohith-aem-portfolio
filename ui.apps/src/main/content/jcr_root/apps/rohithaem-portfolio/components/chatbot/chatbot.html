@@ -1,0 +1,33 @@
+<div data-sly-use.model="com.rohithaem.portfolio.core.models.ChatbotModel"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html" class="cmp-chatbot"
+    data-api-endpoint="${model.apiEndpoint}" data-namespace="${model.namespace || 'default'}"
+    data-welcome-message="${model.welcomeMessage}">
+
+    <sly data-sly-call="${templates.placeholder @ isEmpty = !model.title}"></sly>
+
+    <div class="cmp-chatbot__container" data-sly-test="${model.title}">
+        <div class="cmp-chatbot__header">
+            <h3 class="cmp-chatbot__title">${model.title}</h3>
+            <button class="cmp-chatbot__close-btn" aria-label="Close Chat">&times;</button>
+        </div>
+
+        <div class="cmp-chatbot__messages" id="chatbot-messages">
+            <div class="cmp-chatbot__message cmp-chatbot__message--bot">
+                <div class="cmp-chatbot__message-content">
+                    ${model.welcomeMessage || 'Hello! How can I assist you today?'}
+                </div>
+            </div>
+        </div>
+
+        <div class="cmp-chatbot__input-area">
+            <input type="text" class="cmp-chatbot__input" id="chatbot-input" placeholder="Type your message..." />
+            <button class="cmp-chatbot__send-btn" id="chatbot-send-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
