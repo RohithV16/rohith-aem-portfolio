@@ -19,7 +19,7 @@
     "watch": "npm-run-all --parallel start chokidar aemsyncro"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.29.6",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
