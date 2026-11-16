@@ -172,7 +172,7 @@ plugin takes them as `<configuration>` elements or as `-Daem-analyser.<name>=<va
 | `--min-coverage`, `--max-duplication`, `--max-warnings` | `minCoverage`, `maxDuplication`, `maxWarnings` | |
 | `--sonar` / `--no-sonar` | `enableSonar` | |
 | `--sonar-rules` | `sonarRules` | |
-| `--history`, `--history-limit` | `history`, `historyLimit` | |
+| `--history`, `--history-limit` | `historyDirectory`, `historyLimit` | the element is named after the field, not the property | |
 | `-t, --threads` | `threads` | |
 | `--profile` | `profiles` | |
 | `--max-file-size` | `maxFileSizeBytes` / `maxFileSize` | |

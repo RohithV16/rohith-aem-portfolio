@@ -241,8 +241,45 @@
               <goal>report</goal>
             </goals>
             <configuration>
+              <!-- Reports: SARIF for code scanning, HTML for the dashboard. Both land in one
+                   directory so CI can upload it as a single artefact. -->
               <formats>SARIF,HTML</formats>
               <outputFile>target/aem-analyser</outputFile>
+              <generateHtml>true</generateHtml>
+
+              <!-- Analysis: embedded SonarJava on (nine findings become five without it),
+                   parallel parsing on all cores, a hard 5-minute budget. -->
+              <enableSonar>true</enableSonar>
+              <sonarRules>default</sonarRules>
+              <threads>0</threads>
+              <timeoutSeconds>300</timeoutSeconds>
+              <maxFileSizeBytes>10485760</maxFileSizeBytes>
+
+              <!-- Quality thresholds: report mode does not fail on them, but they are printed in
+                   the report and enforced if the goal is switched to `check`. Generous on purpose
+                   so this build stays green while the findings are triaged. -->
+              <failOn>WARNING</failOn>
+              <maxWarnings>50</maxWarnings>
+              <maxDuplication>10</maxDuplication>
+
+              <!-- Run history for the dashboard trend. -->
+              <historyDirectory>${project.build.directory}/aem-analyser-history</historyDirectory>
+              <historyLimit>50</historyLimit>
+
+              <verbose>false</verbose>
+              <skip>false</skip>
+
+              <!-- Not set here on purpose:
+                     projectRoot          defaults to the reactor root of this build
+                     profiles             no extra Maven profiles needed to discover modules
+                     configFile           add .aem-analyser.yml when you want rule overrides
+                     baseline / updateBaseline / baselineReport
+                                          adopted once the current five findings are triaged
+                     changedOnly / since  a full scan is what CI wants on main
+                     ignoredServices / ignoredConfigPaths / dependencyJars
+                                          machine- or project-specific; prefer the config file
+                     fix / fixDryRun      writing builds should be a deliberate local action
+              -->
             </configuration>
           </execution>
         </executions>
