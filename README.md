@@ -104,6 +104,25 @@ They will test the UI layer of your AEM application using either Cypress or Sele
 
 Check README file in `ui.tests.cypress` or `ui.tests.wdio` module for more details.
 
+## Cross-boundary analysis
+
+[`aem-analyser-maven-plugin`](https://github.com/RohithV16/aem-code-analyser) runs once at the reactor
+root (it needs to see `core`, `ui.apps`, `ui.config` and `dispatcher` together) and reports what
+per-module tools miss: code with no remaining caller, OSGi configuration with no owner, duplicated
+endpoints, and patterns that break on AEM as a Cloud Service.
+
+It is bound to `verify` in the root `pom.xml`, so `mvn verify` writes
+`target/aem-analyser/{aem-analyser.sarif,aem-analyser-report.html}`. Report mode only — it does not
+fail the build.
+
+**Every flag, demonstrated on this repository:** [`docs/aem-code-analyser.md`](docs/aem-code-analyser.md)
+(reproduce with `scripts/aem-analyser-demo.sh`). Current result: **5 warnings, 0 errors** — two
+`AEM-SEC-001` HTL escaping bypasses in the `xfpage` clientlibs and three SonarJava findings in
+`it.tests`.
+
+CI runs the same analysis on every pull request and uploads the SARIF to *Security → Code scanning*
+(`.github/workflows/static-analysis.yml`). To gate instead of report, change the goal to `check`.
+
 ## ClientLibs
 
 The frontend module is made available using an [AEM ClientLib](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/clientlibs.html). When executing the NPM build script, the app is built and the [`aem-clientlib-generator`](https://github.com/wcm-io-frontend/aem-clientlib-generator) package takes the resulting build output and transforms it into such a ClientLib.
