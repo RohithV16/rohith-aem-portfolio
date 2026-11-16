@@ -149,6 +149,49 @@ existing `jacoco.exec` and skips test execution.
 | `--timeout 60` | completes well inside the budget — a full run takes ~5 s |
 | `--no-color` | plain text, for CI logs |
 
+## CLI flags and Maven parameters
+
+Every option exists in both front ends except for a few that only make sense in one of them. The Maven
+plugin takes them as `<configuration>` elements or as `-Daem-analyser.<name>=<value>` properties.
+
+| CLI | Maven plugin | Notes |
+|---|---|---|
+| `[project-root]`, `-p` | `projectRoot` | defaults to the reactor root |
+| `-f, --format` | `formats` / `format` | same format names |
+| `--html`, `--no-html` | `generateHtml` | |
+| `-o, --output` | `outputFile` | file for one format, directory for several |
+| `--fail-on` | `failOn` | `check` goal only |
+| `--fail-on-warning` | `failOnWarning` | `check` goal only |
+| `--baseline`, `--update-baseline`, `--baseline-report` | `baseline`, `updateBaseline`, `baselineReport` | |
+| `--config` | `configFile` | `.aem-analyser.yml` |
+| `--ignore-config` | `ignoredConfigPaths` | |
+| `--ignored-services` | `ignoredServices` | |
+| `--dependency-jars` | `dependencyJars` | |
+| `--changed-only`, `--since` | `changedOnly`, `since` | |
+| `--fix`, `--fix-dry-run` | `fix`, `fixDryRun` | |
+| `--min-coverage`, `--max-duplication`, `--max-warnings` | `minCoverage`, `maxDuplication`, `maxWarnings` | |
+| `--sonar` / `--no-sonar` | `enableSonar` | |
+| `--sonar-rules` | `sonarRules` | |
+| `--history`, `--history-limit` | `history`, `historyLimit` | |
+| `-t, --threads` | `threads` | |
+| `--profile` | `profiles` | |
+| `--max-file-size` | `maxFileSizeBytes` / `maxFileSize` | |
+| `--timeout` | `timeoutSeconds` / `timeout` | |
+| `-v, --verbose` | `verbose` | |
+| — | `skip` | plugin only: turn the execution off (`-Daem-analyser.skip=true`) |
+| `--collect-coverage`, `--force` | — | CLI only: the CLI runs the tests itself; inside a build the coverage comes from the build's own JaCoCo run |
+| `--explain`, `--list-rules`, `--generate-rule-docs` | — | CLI only: catalogue inspection, not analysis |
+| `--no-color` | — | CLI only: Maven controls terminal colour |
+
+Example of the same run through the plugin:
+
+```bash
+mvn -B -ntp io.github.rohithv16:aem-analyser-maven-plugin:1.0.10:report \
+  -Daem-analyser.formats=SARIF,HTML \
+  -Daem-analyser.enableSonar=false \
+  -Daem-analyser.failOn=WARNING
+```
+
 ## Why it is worth running in CI
 
 `AEM-SEC-001` on the two `xfpage` clientlibs is exactly the kind of finding that survives review: an
