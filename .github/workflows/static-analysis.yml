@@ -1,0 +1,61 @@
+name: Cross-boundary analysis
+
+# AEM Code Analyser: dead code, orphaned OSGi configuration, duplication and AEM as a Cloud
+# Service problems that single-language analysers cannot see - it resolves references between
+# Java, HTL, OSGi configs, clientlibs and the content packages of this reactor.
+#
+# Report-only: the findings are uploaded as SARIF (Security > Code scanning) and kept as a build
+# artefact. Nothing fails the build yet; add `-DfailOn=ERROR` or switch the pom to the `check`
+# goal once the current findings are cleared.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyser:
+    name: AEM Code Analyser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      # Direct goal invocation: no compilation needed, so this stays fast and cannot be blocked by
+      # a module that needs a running AEM instance.
+      - name: Analyse
+        run: |
+          mvn -B -ntp io.github.rohithv16:aem-analyser-maven-plugin:1.0.10:report \
+            -Daem-analyser.formats=SARIF,HTML \
+            -Daem-analyser.outputFile=target/aem-analyser \
+            -Daem-analyser.projectRoot=.
+
+      # Code scanning needs `security-events: write`, which a pull request from a fork does not get.
+      # The analysis still runs and the artifact is kept; only the upload is skipped.
+      - name: Upload SARIF
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: target/aem-analyser/aem-analyser.sarif
+          category: aem-code-analyser
+
+      - name: Keep the HTML dashboard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aem-analyser-report
+          path: target/aem-analyser/
+          if-no-files-found: warn

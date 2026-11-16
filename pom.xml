@@ -128,6 +128,7 @@
     
     
     <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
+    <aem.analyser.version>1.0.10</aem.analyser.version>
                     
     
     
@@ -219,6 +220,33 @@
                               
       
       
+      <!--
+        AEM Code Analyser - cross-boundary analysis of dead code, orphaned OSGi configuration,
+        duplication and AEM as a Cloud Service problems. Runs once at the reactor root
+        (inherited=false) so it can see references between bundle, ui.apps, ui.config and
+        dispatcher. Report mode: writes target/aem-analyser/{sarif,html} and does not fail the
+        build. Switch the goal to `check` (plus <failOn>) when you want it to gate a pull request.
+        See docs/aem-code-analyser.md for every option.
+      -->
+      <plugin>
+        <groupId>io.github.rohithv16</groupId>
+        <artifactId>aem-analyser-maven-plugin</artifactId>
+        <version>${aem.analyser.version}</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>aem-analyser-report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <formats>SARIF,HTML</formats>
+              <outputFile>target/aem-analyser</outputFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <!-- Maven Source Plugin -->
                               
       
